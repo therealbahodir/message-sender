@@ -5,6 +5,7 @@ import (
     "github.com/joho/godotenv"
     "log"
     "github.com/gin-gonic/gin"
+    "github.com/therealbahodir/message-sender/handlers"
 )
 
 
@@ -19,8 +20,9 @@ func main() {
 
     router := gin.Default()
 
-    
-    
+    router.POST("/send", handlers.SendMessageAPI)
+
+
     log.Println("Listening and serving HTTP on localhost:", port)
     err = router.Run(port)
     if err != nil {

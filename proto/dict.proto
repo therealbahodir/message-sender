@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/therealbahodir/message-sender/proto";
+
+message Content {
+	string Text = 1;
+	string Priority = 2;
+}
+
+message Empty {
+
+}
+
+service Bot {
+	rpc Sender(Content) returns (Empty){}
+}

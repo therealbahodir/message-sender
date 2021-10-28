@@ -6,9 +6,16 @@ import (
     "log"
     "github.com/gin-gonic/gin"
     "github.com/therealbahodir/message-sender/handlers"
+    _"github.com/therealbahodir/message-sender/docs"
+    ginSwagger "github.com/swaggo/gin-swagger"
+    swaggerFiles "github.com/swaggo/files"
 )
 
-
+// @title Message Sender Bot
+// @version 1.0
+// @description Telegram Bot which sends messages to channels and groups
+// @host localhost:8000
+// @BasePath /
 func main() {
 	err := godotenv.Load()
     if err != nil {
@@ -21,6 +28,7 @@ func main() {
     router := gin.Default()
 
     router.POST("/send", handlers.SendMessageAPI)
+    router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 
     log.Println("Listening and serving HTTP on localhost:", port)

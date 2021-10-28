@@ -3,7 +3,7 @@ package handlers
 import (
 	"github.com/gin-gonic/gin"
 	"log"
-	"github.com/therealbahodir/message-sender/bot"
+	"github.com/therealbahodir/message-sender/client"
 )
 
 
@@ -29,8 +29,7 @@ func SendMessageAPI(ctx *gin.Context) {
 		log.Fatalf("Problem with getting message from API Server: %v", err)
 	}
 
-   	log.Println(newMessage)
-   	bot.BotService(newMessage.Text)
+    status := client.Stub(newMessage.Text, newMessage.Priority)
 
-    ctx.AbortWithStatus(200)
+    ctx.AbortWithStatus(status)
 }

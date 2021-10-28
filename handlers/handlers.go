@@ -3,6 +3,7 @@ package handlers
 import (
 	"github.com/gin-gonic/gin"
 	"log"
+	"github.com/therealbahodir/message-sender/bot"
 )
 
 
@@ -29,7 +30,7 @@ func SendMessageAPI(ctx *gin.Context) {
 	}
 
    	log.Println(newMessage)
+   	bot.BotService(newMessage.Text)
 
     ctx.AbortWithStatus(200)
-
 }
